@@ -1,0 +1,51 @@
+services:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    ports:
+      - '5341:80'
+    volumes:
+      - C:\Mounts\FMS\Seq:/data
+    environment:
+      ACCEPT_EULA: 'Y'
+      SEQ_FIRSTRUN_ADMINPASSWORD: A123456
+    restart: unless-stopped
+    networks:
+      - fsm_network
+
+  # gateway:
+  #   image: nginx:latest
+  #   ports:
+  #     - '80:80'
+  #   volumes:
+  #     - ./html:/usr/share/nginx/html:ro
+  #   networks:
+  #     - fsm_network
+
+  # app:
+  #   image: myapp:latest
+  #   build:
+  #     context: ./app
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     - APP_ENV=production
+  #     - APP_DEBUG=false
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - fsm_network
+
+  # db:
+  #   image: postgres:13
+  #   environment:
+  #     - POSTGRES_USER=myuser
+  #     - POSTGRES_PASSWORD=mypassword
+  #     - POSTGRES_DB=mydatabase
+  #   volumes:
+  #     - db_data:/var/lib/postgresql/data
+  #   networks:
+  #     - fsm_network
+
+networks:
+  fsm_network:
+    driver: bridge
