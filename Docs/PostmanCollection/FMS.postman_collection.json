@@ -1,0 +1,92 @@
+{
+  "info": {
+    "_postman_id": "29480b1b-d7ae-4208-a230-a561e82dec15",
+    "name": "FMS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15783965"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "get user",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{USER_API_HOST}}?userId",
+              "host": [
+                "{{USER_API_HOST}}"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": null,
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "item": [
+        {
+          "name": "get field",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{FIELD_API_HOS}}/?filedId",
+              "host": [
+                "{{FIELD_API_HOS}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "filedId",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cotroller",
+      "item": [
+        {
+          "name": "get cotroller",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{CONTROLLER_API_HOST}}/?controllerId",
+              "host": [
+                "{{CONTROLLER_API_HOST}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "key": "controllerId",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
