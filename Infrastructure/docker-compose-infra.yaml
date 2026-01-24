@@ -1,0 +1,19 @@
+services:
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    ports:
+      - '5341:80'
+    volumes:
+      - C:\Mounts\FMS\Seq:/data
+    environment:
+      ACCEPT_EULA: 'Y'
+      SEQ_FIRSTRUN_ADMINPASSWORD: A123456
+    restart: unless-stopped
+    networks:
+      - fsm_shared_network
+
+networks:
+  fsm_shared_network:
+    name: fsm_shared_network
+    driver: bridge

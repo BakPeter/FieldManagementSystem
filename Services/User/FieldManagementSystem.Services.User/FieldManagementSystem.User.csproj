@@ -7,13 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Seq.Extensions.Logging" Version="9.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FieldManagementSystem.User.Core\FieldManagementSystem.User.Core.csproj" />
-    <ProjectReference Include="..\FieldManagementSystem.User.Infrastructure\FieldManagementSystem.User.Infrastructure.csproj" />
+    <ProjectReference Include="..\FieldManagementSystem.Services.User.Core\FieldManagementSystem.User.Core.csproj" />
+    <ProjectReference Include="..\FieldManagementSystem.Services.User.Infrastructure\FieldManagementSystem.User.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

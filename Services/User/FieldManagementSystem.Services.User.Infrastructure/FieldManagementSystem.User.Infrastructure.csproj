@@ -8,10 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FieldManagementSystem.User.Core\FieldManagementSystem.User.Core.csproj" />
+    <ProjectReference Include="..\FieldManagementSystem.Services.User.Core\FieldManagementSystem.User.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Repository\" />
   </ItemGroup>
 
 </Project>

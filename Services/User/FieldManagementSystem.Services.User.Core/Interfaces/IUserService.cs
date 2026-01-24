@@ -1,12 +1,13 @@
-﻿using FieldManagementSystem.User.Core.DTOs;
+﻿using FieldManagementSystem.User.Core.Types;
+using FieldManagementSystem.User.Core.Types.DTOs;
 
 namespace FieldManagementSystem.User.Core.Interfaces;
 
 public interface IUserService
 {
-    Task<IEnumerable<UserDto>> GetUsersAsync();
-    Task<UserDto> GetUserByEmailAsync(string email);
-    Task<UserDto> CreateUserAsync(CreateUserDto createUserDto);
-    Task UpdateUserAsync(string email, UpdateUserDto updateUserDto);
-    Task DeleteUserAsync(string email);
+    Task<Result<IEnumerable<UserEntity>>> GetUsersAsync();
+    Task<Result<UserEntity>> GetUserAsync(string id);
+    Task<Result<UserEntity>> CreateUserAsync(CreateUserDto createUserDto);
+    Task<Result<string>> UpdateUser(UpdateUserDto updateUserDto);
+    Task<Result<string>> DeleteUserAsync(string id);
 }

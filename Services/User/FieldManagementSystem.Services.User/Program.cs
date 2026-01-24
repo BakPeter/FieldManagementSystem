@@ -1,14 +1,17 @@
-using FieldManagementSystem.User.Core.Interfaces;
-using FieldManagementSystem.User.Infrastructure.Services;
+using FieldManagementSystem.User.Infrastructure.Ioc;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddUserServices();
 
-builder.Services.AddLogging(loggingBuilder =>
+builder.Host.UseSerilog((ctx, lc) =>
 {
-    loggingBuilder.AddSeq();
+    lc.ReadFrom.Configuration(ctx.Configuration)
+        .Enrich.FromLogContext()
+        .Enrich.WithEnvironmentName()
+        .Enrich.WithThreadId();
 });
 
 builder.Services.AddControllers();
@@ -25,7 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
