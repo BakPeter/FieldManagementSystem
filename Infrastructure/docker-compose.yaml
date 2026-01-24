@@ -1,52 +1,17 @@
 services:
-  seq:
-    image: datalust/seq:latest
-    container_name: seq
+  user-service:
+    image: fieldmanagementsystem-user:latest
+    container_name: fms-user-service
     ports:
-      - '5341:80'
-    volumes:
-      - C:\Mounts\FMS\Seq:/data
+      - '8081:8080'
     environment:
-      ACCEPT_EULA: 'Y'
-      SEQ_FIRSTRUN_ADMINPASSWORD: A123456
-    restart: unless-stopped
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      Logging__Seq__ServerUrl: http://seq
     networks:
-      - fsm_network
-
-  # gateway:
-  #   image: nginx:latest
-  #   ports:
-  #     - '8080:8080'
-  #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-  #   restart: unless-stopped
-  #   networks:
-  #     - fsm_network
-
-  # app:
-  #   image: myapp:latest
-  #   build:
-  #     context: ./app
-  #     dockerfile: Dockerfile
-  #   environment:
-  #     - APP_ENV=production
-  #     - APP_DEBUG=false
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - fsm_network
-
-  # db:
-  #   image: postgres:13
-  #   environment:
-  #     - POSTGRES_USER=myuser
-  #     - POSTGRES_PASSWORD=mypassword
-  #     - POSTGRES_DB=mydatabase
-  #   volumes:
-  #     - db_data:/var/lib/postgresql/data
-  #   networks:
-  #     - fsm_network
+      - fsm_shared_network
+    restart: unless-stopped
 
 networks:
-  fsm_network:
-    driver: bridge
+  fsm_shared_network:
+    external: true

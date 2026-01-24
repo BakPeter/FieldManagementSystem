@@ -10,21 +10,103 @@
       "name": "User",
       "item": [
         {
-          "name": "get user",
+          "name": "get users",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{USER_API_HOST}}?userId",
+              "raw": "{{USER_API_HOST}}",
+              "host": [
+                "{{USER_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get user by email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{USER_API_HOST}}/peterrr@gmail.com",
               "host": [
                 "{{USER_API_HOST}}"
               ],
-              "query": [
-                {
-                  "key": "userId",
-                  "value": null,
-                  "type": "text"
+              "path": [
+                "peterrr@gmail.com"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create user",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"peterrr@gmail.com\",\r\n  \"firstName\": \"Peter\",\r\n  \"lastName\": \"Pet\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
                 }
+              }
+            },
+            "url": {
+              "raw": "{{USER_API_HOST}}",
+              "host": [
+                "{{USER_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update user",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"peterrr@gmail.com\",\r\n  \"firstName\": \"Peterrrrrr\",\r\n  \"lastName\": \"Do\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{USER_API_HOST}}",
+              "host": [
+                "{{USER_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete user",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"Jooohn@gmail.com\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Do\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{USER_API_HOST}}/peterrr@gmail.com",
+              "host": [
+                "{{USER_API_HOST}}"
+              ],
+              "path": [
+                "peterrr@gmail.com"
               ]
             }
           },
@@ -41,16 +123,16 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{FIELD_API_HOS}}/?filedId",
+              "raw": "{{FIELD_API_HOST}}/?fieldId",
               "host": [
-                "{{FIELD_API_HOS}}"
+                "{{FIELD_API_HOST}}"
               ],
               "path": [
                 ""
               ],
               "query": [
                 {
-                  "key": "filedId",
+                  "key": "fieldId",
                   "value": null
                 }
               ]
