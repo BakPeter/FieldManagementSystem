@@ -1,4 +1,4 @@
-namespace FieldManagementSystem.User.Infrastructure.types;
+namespace FieldManagementSystem.Services.User.Infrastructure.types;
 
 public class UserValidationException : Exception
 {

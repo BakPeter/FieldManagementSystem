@@ -1,14 +1,14 @@
-using Moq;
-using FieldManagementSystem.User.Controllers;
-using FieldManagementSystem.User.Core.Interfaces;
-using FieldManagementSystem.User.Core.Types;
-using FieldManagementSystem.User.Core.Types.DTOs;
-using FieldManagementSystem.User.Infrastructure.types;
+using FieldManagementSystem.Services.User.Controllers;
+using FieldManagementSystem.Services.User.Core.Interfaces;
+using FieldManagementSystem.Services.User.Core.Types;
+using FieldManagementSystem.Services.User.Core.Types.DTOs;
+using FieldManagementSystem.Services.User.Infrastructure.types;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Http; // For StatusCodes
+using Moq;
 
-namespace FieldManagementSystem.User.Tests;
+namespace FieldManagementSystem.Services.User.Tests;
 
 public class UserControllerTests
 {
@@ -41,8 +41,8 @@ public class UserControllerTests
         // Arrange
         var users = new List<UserEntity>
         {
-            new UserEntity { Id = Guid.NewGuid(), Email = "test1@example.com", FirstName = "F1", LastName = "L1" },
-            new UserEntity { Id = Guid.NewGuid(), Email = "test2@example.com", FirstName = "F2", LastName = "L2" }
+            new() { Id = Guid.NewGuid(), Email = "test1@example.com", FirstName = "F1", LastName = "L1" },
+            new() { Id = Guid.NewGuid(), Email = "test2@example.com", FirstName = "F2", LastName = "L2" }
         };
         _mockUserService.Setup(s => s.GetUsersAsync()).ReturnsAsync(new Result<IEnumerable<UserEntity>>(true, users));
 
@@ -143,7 +143,7 @@ public class UserControllerTests
 
         // Assert
         Assert.That(result, Is.InstanceOf<CreatedAtActionResult>());
-        var createdAtActionResult = ((CreatedAtActionResult)result)!;
+        var createdAtActionResult = ((CreatedAtActionResult)result);
         Assert.That(createdAtActionResult.StatusCode, Is.EqualTo(StatusCodes.Status201Created));
         Assert.That(createdAtActionResult.ActionName, Is.EqualTo(nameof(UserController.GetUser)));
         Assert.That(createdAtActionResult.RouteValues!["id"], Is.EqualTo(createDto.Email));

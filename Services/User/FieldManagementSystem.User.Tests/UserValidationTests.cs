@@ -1,10 +1,10 @@
-using FieldManagementSystem.User.Infrastructure.Services.Validation;
-using FieldManagementSystem.User.Core.Types;
-using FieldManagementSystem.User.Core.Interfaces.Validation;
+using FieldManagementSystem.Services.User.Core.Interfaces.Validation;
+using FieldManagementSystem.Services.User.Core.Types;
+using FieldManagementSystem.Services.User.Infrastructure.Services.Validation;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace FieldManagementSystem.User.Tests;
+namespace FieldManagementSystem.Services.User.Tests;
 
 public class UserValidationTests
 {

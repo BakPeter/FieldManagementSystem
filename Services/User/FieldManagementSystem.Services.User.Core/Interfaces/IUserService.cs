@@ -1,7 +1,7 @@
-﻿using FieldManagementSystem.User.Core.Types;
-using FieldManagementSystem.User.Core.Types.DTOs;
+﻿using FieldManagementSystem.Services.User.Core.Types;
+using FieldManagementSystem.Services.User.Core.Types.DTOs;
 
-namespace FieldManagementSystem.User.Core.Interfaces;
+namespace FieldManagementSystem.Services.User.Core.Interfaces;
 
 public interface IUserService
 {

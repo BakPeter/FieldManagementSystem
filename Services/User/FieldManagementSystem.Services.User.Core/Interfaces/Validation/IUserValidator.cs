@@ -1,6 +1,6 @@
-﻿using FieldManagementSystem.User.Core.Types;
+﻿using FieldManagementSystem.Services.User.Core.Types;
 
-namespace FieldManagementSystem.User.Core.Interfaces.Validation;
+namespace FieldManagementSystem.Services.User.Core.Interfaces.Validation;
 
 public interface IUserValidator
 {

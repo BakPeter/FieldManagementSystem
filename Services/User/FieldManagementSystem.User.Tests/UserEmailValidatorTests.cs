@@ -1,7 +1,7 @@
-using FieldManagementSystem.User.Infrastructure.Services.Validation.Validators;
-using FieldManagementSystem.User.Core.Types;
+using FieldManagementSystem.Services.User.Core.Types;
+using FieldManagementSystem.Services.User.Infrastructure.Services.Validation.Validators;
 
-namespace FieldManagementSystem.User.Tests;
+namespace FieldManagementSystem.Services.User.Tests;
 
 public class UserEmailValidatorTests
 {

@@ -1,13 +1,13 @@
 using System.Text.Json;
-using FieldManagementSystem.User.Core.Interfaces;
-using FieldManagementSystem.User.Core.Interfaces.Repository;
-using FieldManagementSystem.User.Core.Interfaces.Validation;
-using FieldManagementSystem.User.Core.Types;
-using FieldManagementSystem.User.Core.Types.DTOs;
-using FieldManagementSystem.User.Infrastructure.types;
+using FieldManagementSystem.Services.User.Core.Interfaces;
+using FieldManagementSystem.Services.User.Core.Interfaces.Repository;
+using FieldManagementSystem.Services.User.Core.Interfaces.Validation;
+using FieldManagementSystem.Services.User.Core.Types;
+using FieldManagementSystem.Services.User.Core.Types.DTOs;
+using FieldManagementSystem.Services.User.Infrastructure.types;
 using Microsoft.Extensions.Logging;
 
-namespace FieldManagementSystem.User.Infrastructure.Services;
+namespace FieldManagementSystem.Services.User.Infrastructure.Services;
 
 public class UserService : IUserService
 {
@@ -74,15 +74,7 @@ public class UserService : IUserService
                 new ArgumentException($"User with email {createUserDto.Email} exists", nameof(createUserDto)));
 
         var isUserAdded = await _repository.CreateUserAsync(userToAdd);
-        if (isUserAdded)
-        {
-            return new Result<UserEntity>(true, userToAdd);
-        }
-        else
-        {
-            // This case might need more specific error handling depending on repository
-            return new Result<UserEntity>(false, null, new Exception("Failed to add user to repository."));
-        }
+        return isUserAdded ? new Result<UserEntity>(true, userToAdd) : new Result<UserEntity>(false, null, new Exception("Failed to add user to repository."));
     }
 
     public async Task<Result<string>> UpdateUser(UpdateUserDto updateUserDto)

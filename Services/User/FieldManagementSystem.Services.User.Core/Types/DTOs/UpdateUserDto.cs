@@ -1,4 +1,4 @@
-namespace FieldManagementSystem.User.Core.Types.DTOs;
+namespace FieldManagementSystem.Services.User.Core.Types.DTOs;
 
 public class UpdateUserDto
 {

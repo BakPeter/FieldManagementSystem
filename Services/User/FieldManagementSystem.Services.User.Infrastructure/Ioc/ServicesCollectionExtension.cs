@@ -1,13 +1,13 @@
-﻿using FieldManagementSystem.User.Core.Interfaces;
-using FieldManagementSystem.User.Core.Interfaces.Repository;
-using FieldManagementSystem.User.Core.Interfaces.Validation;
-using FieldManagementSystem.User.Infrastructure.Services;
-using FieldManagementSystem.User.Infrastructure.Services.Repository;
-using FieldManagementSystem.User.Infrastructure.Services.Validation;
-using FieldManagementSystem.User.Infrastructure.Services.Validation.Validators;
+﻿using FieldManagementSystem.Services.User.Core.Interfaces;
+using FieldManagementSystem.Services.User.Core.Interfaces.Repository;
+using FieldManagementSystem.Services.User.Core.Interfaces.Validation;
+using FieldManagementSystem.Services.User.Infrastructure.Services;
+using FieldManagementSystem.Services.User.Infrastructure.Services.Repository;
+using FieldManagementSystem.Services.User.Infrastructure.Services.Validation;
+using FieldManagementSystem.Services.User.Infrastructure.Services.Validation.Validators;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FieldManagementSystem.User.Infrastructure.Ioc;
+namespace FieldManagementSystem.Services.User.Infrastructure.Ioc;
 
 public static class ServicesCollectionExtension
 {

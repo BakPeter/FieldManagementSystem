@@ -1,10 +1,10 @@
 using System.Text.Json;
-using FieldManagementSystem.User.Core.Interfaces;
-using FieldManagementSystem.User.Core.Types.DTOs;
-using FieldManagementSystem.User.Infrastructure.types;
+using FieldManagementSystem.Services.User.Core.Interfaces;
+using FieldManagementSystem.Services.User.Core.Types.DTOs;
+using FieldManagementSystem.Services.User.Infrastructure.types;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FieldManagementSystem.User.Controllers;
+namespace FieldManagementSystem.Services.User.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

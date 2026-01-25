@@ -1,9 +1,21 @@
 services:
   user-service:
-    image: fieldmanagementsystem-user:latest
+    image: fieldmanagementsystem-services-user:latest
     container_name: fms-user-service
     ports:
       - '8081:8080'
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      Logging__Seq__ServerUrl: http://seq
+    networks:
+      - fsm_shared_network
+    restart: unless-stopped
+  field-service:
+    image: fieldmanagementsystem-services-field:latest
+    container_name: fms-field-service
+    ports:
+      - '8082:8080'
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080

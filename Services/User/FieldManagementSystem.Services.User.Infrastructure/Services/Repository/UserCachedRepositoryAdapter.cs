@@ -1,9 +1,9 @@
 ﻿using System.Collections.Concurrent;
-using FieldManagementSystem.User.Core.Interfaces.Repository;
-using FieldManagementSystem.User.Core.Types;
+using FieldManagementSystem.Services.User.Core.Interfaces.Repository;
+using FieldManagementSystem.Services.User.Core.Types;
 using Microsoft.Extensions.Logging;
 
-namespace FieldManagementSystem.User.Infrastructure.Services.Repository;
+namespace FieldManagementSystem.Services.User.Infrastructure.Services.Repository;
 
 public class UserCachedRepositoryAdapter : IUserRepositoryAdapter
 {
@@ -16,6 +16,7 @@ public class UserCachedRepositoryAdapter : IUserRepositoryAdapter
         {
             Id = Guid.NewGuid(),
             Email = "mymail@gmail.com",
+            UserType = UserType.Admin,
             FirstName = "John",
             LastName = "Doe",
             CreatedDate = DateTime.UtcNow,
@@ -25,6 +26,7 @@ public class UserCachedRepositoryAdapter : IUserRepositoryAdapter
         {
             Id = Guid.NewGuid(),
             Email = "mymail2@gmail.com",
+            UserType = UserType.Costumer,
             FirstName = "John2",
             LastName = "Doe2",
             CreatedDate = DateTime.UtcNow,
@@ -57,7 +59,7 @@ public class UserCachedRepositoryAdapter : IUserRepositoryAdapter
             _data[userToUpdate.Email] = userToUpdate;
             return Task.FromResult(true);
         }
-        catch (Exception _)
+        catch (Exception )
         {
             _logger.LogError("Failed To Update User, {userToUpdate}", userToUpdate);
             throw;

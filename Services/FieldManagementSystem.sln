@@ -5,13 +5,23 @@ VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{CD16CA97-F666-444D-938E-ADD301C182D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.User", "User\FieldManagementSystem.Services.User\FieldManagementSystem.User.csproj", "{967C2932-8250-5FA2-8CE0-F7D4B843D858}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.Services.User", "User\FieldManagementSystem.Services.User\FieldManagementSystem.Services.User.csproj", "{967C2932-8250-5FA2-8CE0-F7D4B843D858}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.User.Core", "User\FieldManagementSystem.Services.User.Core\FieldManagementSystem.User.Core.csproj", "{A018F105-E79E-BA83-F39C-EA8C1C200253}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.Services.User.Core", "User\FieldManagementSystem.Services.User.Core\FieldManagementSystem.Services.User.Core.csproj", "{A018F105-E79E-BA83-F39C-EA8C1C200253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.User.Infrastructure", "User\FieldManagementSystem.Services.User.Infrastructure\FieldManagementSystem.User.Infrastructure.csproj", "{9F5338C5-8D19-15FB-9BD5-C31A7FD7C73E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.Services.User.Infrastructure", "User\FieldManagementSystem.Services.User.Infrastructure\FieldManagementSystem.Services.User.Infrastructure.csproj", "{9F5338C5-8D19-15FB-9BD5-C31A7FD7C73E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.User.Tests", "User\FieldManagementSystem.User.Tests\FieldManagementSystem.User.Tests.csproj", "{4B51D5DB-2D82-E560-8405-DBB17B116269}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.Services.User.Tests", "User\FieldManagementSystem.User.Tests\FieldManagementSystem.Services.User.Tests.csproj", "{4B51D5DB-2D82-E560-8405-DBB17B116269}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Field", "Field", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.Services.Field", "Field\FieldManagementSystem.Services.Field\FieldManagementSystem.Services.Field.csproj", "{2C95C7F3-7022-C61F-9895-58FA98F0B3F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.Services.Field.Core", "Field\FieldManagementSystem.Services.Field.Core\FieldManagementSystem.Services.Field.Core.csproj", "{092DD260-E6BB-AC4E-91E8-CAD44C7DF645}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.Services.Field.Infrastructure", "Field\FieldManagementSystem.Services.Field.Infrastructure\FieldManagementSystem.Services.Field.Infrastructure.csproj", "{49C22038-DE95-0087-905C-5EBF9D4B2646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldManagementSystem.Services.Field.Tests", "Field\FieldManagementSystem.Services.Field.Tests\FieldManagementSystem.Services.Field.Tests.csproj", "{2A3CC90B-14D8-B8BA-52DF-BBC04F3EEFAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +45,22 @@ Global
 		{4B51D5DB-2D82-E560-8405-DBB17B116269}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B51D5DB-2D82-E560-8405-DBB17B116269}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B51D5DB-2D82-E560-8405-DBB17B116269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C95C7F3-7022-C61F-9895-58FA98F0B3F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C95C7F3-7022-C61F-9895-58FA98F0B3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C95C7F3-7022-C61F-9895-58FA98F0B3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C95C7F3-7022-C61F-9895-58FA98F0B3F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{092DD260-E6BB-AC4E-91E8-CAD44C7DF645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{092DD260-E6BB-AC4E-91E8-CAD44C7DF645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{092DD260-E6BB-AC4E-91E8-CAD44C7DF645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{092DD260-E6BB-AC4E-91E8-CAD44C7DF645}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49C22038-DE95-0087-905C-5EBF9D4B2646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49C22038-DE95-0087-905C-5EBF9D4B2646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49C22038-DE95-0087-905C-5EBF9D4B2646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49C22038-DE95-0087-905C-5EBF9D4B2646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A3CC90B-14D8-B8BA-52DF-BBC04F3EEFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A3CC90B-14D8-B8BA-52DF-BBC04F3EEFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A3CC90B-14D8-B8BA-52DF-BBC04F3EEFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A3CC90B-14D8-B8BA-52DF-BBC04F3EEFAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +70,10 @@ Global
 		{A018F105-E79E-BA83-F39C-EA8C1C200253} = {CD16CA97-F666-444D-938E-ADD301C182D7}
 		{9F5338C5-8D19-15FB-9BD5-C31A7FD7C73E} = {CD16CA97-F666-444D-938E-ADD301C182D7}
 		{4B51D5DB-2D82-E560-8405-DBB17B116269} = {CD16CA97-F666-444D-938E-ADD301C182D7}
+		{2C95C7F3-7022-C61F-9895-58FA98F0B3F2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{092DD260-E6BB-AC4E-91E8-CAD44C7DF645} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{49C22038-DE95-0087-905C-5EBF9D4B2646} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{2A3CC90B-14D8-B8BA-52DF-BBC04F3EEFAA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EB23BB9-3FC0-4F85-8849-083F6B1248B6}

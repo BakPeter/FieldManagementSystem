@@ -1,6 +1,6 @@
-﻿using FieldManagementSystem.User.Core.Types;
+﻿using FieldManagementSystem.Services.User.Core.Types;
 
-namespace FieldManagementSystem.User.Core.Interfaces.Repository;
+namespace FieldManagementSystem.Services.User.Core.Interfaces.Repository;
 
 public interface IUserRepository
 {

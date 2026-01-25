@@ -111,6 +111,14 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
         }
       ]
     },
@@ -118,23 +126,103 @@
       "name": "Field",
       "item": [
         {
-          "name": "get field",
+          "name": "get fields",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{FIELD_API_HOST}}/?fieldId",
+              "raw": "{{FIELD_API_HOST}}",
+              "host": [
+                "{{FIELD_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get field by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{FIELD_API_HOST}}/1a31c61f-780e-49e4-bac7-82d4d5b927c5",
               "host": [
                 "{{FIELD_API_HOST}}"
               ],
               "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "fieldId",
-                  "value": null
+                "1a31c61f-780e-49e4-bac7-82d4d5b927c5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create field",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Red Field\",\r\n  \"description\": \"Field of Strubaries\",\r\n  \"authorizedUsers\": [\r\n   \"user1@gmail.com\"\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
                 }
+              }
+            },
+            "url": {
+              "raw": "{{FIELD_API_HOST}}",
+              "host": [
+                "{{FIELD_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update field",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"1a31c61f-780e-49e4-bac7-82d4d5b927c5\",\r\n  \"description\": \"Oranges and Klemantinot field\",\r\n  \"authorizedUsers\": [\r\n    \"useremal3@gmail.com\"\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{FIELD_API_HOST}}",
+              "host": [
+                "{{FIELD_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete field",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"Jooohn@gmail.com\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Do\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{FIELD_API_HOST}}/1a31c61f-780e-49e4-bac7-82d4d5b927c5",
+              "host": [
+                "{{FIELD_API_HOST}}"
+              ],
+              "path": [
+                "1a31c61f-780e-49e4-bac7-82d4d5b927c5"
               ]
             }
           },

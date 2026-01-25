@@ -1,9 +1,9 @@
-using FieldManagementSystem.User.Core.Types;
-using FieldManagementSystem.User.Infrastructure.Services.Repository;
+using FieldManagementSystem.Services.User.Core.Types;
+using FieldManagementSystem.Services.User.Infrastructure.Services.Repository;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace FieldManagementSystem.User.Tests;
+namespace FieldManagementSystem.Services.User.Tests;
 
 [Ignore("Temporarily disabled")]
 [TestFixture]

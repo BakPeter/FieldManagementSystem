@@ -1,8 +1,8 @@
-﻿using FieldManagementSystem.User.Core.Interfaces.Validation;
-using FieldManagementSystem.User.Core.Types;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using FieldManagementSystem.Services.User.Core.Interfaces.Validation;
+using FieldManagementSystem.Services.User.Core.Types;
 
-namespace FieldManagementSystem.User.Infrastructure.Services.Validation.Validators;
+namespace FieldManagementSystem.Services.User.Infrastructure.Services.Validation.Validators;
 
 public class UserNameValidator : IUserValidator
 {

@@ -1,8 +1,8 @@
-﻿using FieldManagementSystem.User.Core.Interfaces.Repository;
-using FieldManagementSystem.User.Core.Types;
+﻿using FieldManagementSystem.Services.User.Core.Interfaces.Repository;
+using FieldManagementSystem.Services.User.Core.Types;
 using Microsoft.Extensions.Logging;
 
-namespace FieldManagementSystem.User.Infrastructure.Services.Repository;
+namespace FieldManagementSystem.Services.User.Infrastructure.Services.Repository;
 
 public class UserRepository : IUserRepository
 {

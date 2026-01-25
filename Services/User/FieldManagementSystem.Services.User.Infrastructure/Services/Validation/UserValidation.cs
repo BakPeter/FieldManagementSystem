@@ -1,8 +1,8 @@
-﻿using FieldManagementSystem.User.Core.Interfaces.Validation;
-using FieldManagementSystem.User.Core.Types;
+﻿using FieldManagementSystem.Services.User.Core.Interfaces.Validation;
+using FieldManagementSystem.Services.User.Core.Types;
 using Microsoft.Extensions.Logging;
 
-namespace FieldManagementSystem.User.Infrastructure.Services.Validation;
+namespace FieldManagementSystem.Services.User.Infrastructure.Services.Validation;
 
 public class UserValidation: IUserValidation
 {

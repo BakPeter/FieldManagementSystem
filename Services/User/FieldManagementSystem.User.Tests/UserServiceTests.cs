@@ -1,13 +1,13 @@
-using Moq;
-using FieldManagementSystem.User.Core.Interfaces.Repository;
-using FieldManagementSystem.User.Core.Interfaces.Validation;
-using FieldManagementSystem.User.Core.Types;
-using FieldManagementSystem.User.Core.Types.DTOs;
-using FieldManagementSystem.User.Infrastructure.Services;
-using FieldManagementSystem.User.Infrastructure.types;
+using FieldManagementSystem.Services.User.Core.Interfaces.Repository;
+using FieldManagementSystem.Services.User.Core.Interfaces.Validation;
+using FieldManagementSystem.Services.User.Core.Types;
+using FieldManagementSystem.Services.User.Core.Types.DTOs;
+using FieldManagementSystem.Services.User.Infrastructure.Services;
+using FieldManagementSystem.Services.User.Infrastructure.types;
 using Microsoft.Extensions.Logging;
+using Moq;
 
-namespace FieldManagementSystem.User.Tests;
+namespace FieldManagementSystem.Services.User.Tests;
 
 public class UserServiceTests
 {
