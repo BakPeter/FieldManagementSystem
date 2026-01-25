@@ -23,6 +23,18 @@ services:
     networks:
       - fsm_shared_network
     restart: unless-stopped
+  controller-service:
+    image: fieldmanagementsystem-services-controller:latest
+    container_name: fms-controller-service
+    ports:
+      - '8083:8080'
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      Logging__Seq__ServerUrl: http://seq
+    networks:
+      - fsm_shared_network
+    restart: unless-stopped
 
 networks:
   fsm_shared_network:

@@ -26,6 +26,13 @@ $projects = @(
         Dockerfile = "..\Services\Field\FieldManagementSystem.Services.Field\Dockerfile"
         BuildOutput = Join-Path $BuildRoot "FieldManagementSystem.Services.Field"
         ImageName = "fieldmanagementsystem-services-field:latest"
+    },
+    @{
+        ProjectName = "FieldManagementSystem.Services.Controller"
+        ProjectFile = "..\Services\Controller\FieldManagementSystem.Services.Controller\FieldManagementSystem.Services.Controller.csproj"
+        Dockerfile = "..\Services\Controller\FieldManagementSystem.Services.Controller\Dockerfile"
+        BuildOutput = Join-Path $BuildRoot "FieldManagementSystem.Services.Controller"
+        ImageName = "fieldmanagementsystem-services-controller:latest"
     }
 )
 

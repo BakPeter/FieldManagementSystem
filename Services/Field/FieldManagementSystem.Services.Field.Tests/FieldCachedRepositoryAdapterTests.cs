@@ -13,8 +13,8 @@ public class FieldCachedRepositoryAdapterTests
 {
     private Mock<ILogger<FieldCachedRepositoryAdapter>> _mockLogger;
     private FieldCachedRepositoryAdapter _adapter;
-    private ConcurrentDictionary<string, FieldEntity> _privateDataField; // To access the private dictionary for setup/assertion
-
+    private ConcurrentDictionary<string, FieldEntity> _privateDataField; 
+    
     [SetUp]
     public void Setup()
     {

@@ -4,7 +4,6 @@ using FieldManagementSystem.Services.Controller.Core.Interfaces.Validation;
 using FieldManagementSystem.Services.Controller.Infrastructure.Services;
 using FieldManagementSystem.Services.Controller.Infrastructure.Services.Repository;
 using FieldManagementSystem.Services.Controller.Infrastructure.Services.Validation;
-using FieldManagementSystem.Services.Controller.Infrastructure.Services.Validation.Validators;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FieldManagementSystem.Services.Controller.Infrastructure.Ioc;

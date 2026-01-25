@@ -20,14 +20,14 @@ public class ControllerController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetUsers()
+    public async Task<IActionResult> GetController()
     {
         try
         {
             var response = await _service.GetControllersAsync();
             if (response.IsSuccess) return Ok(response.Data);
 
-            _logger.LogInformation("111Get Users, response: {response}", JsonSerializer.Serialize(response));
+            _logger.LogInformation("Get Controller, response: {response}", JsonSerializer.Serialize(response));
 
             return BadRequest(response.Error!.Message);
         }
@@ -58,7 +58,7 @@ public class ControllerController : ControllerBase
     
     
     [HttpPost]
-    public async Task<IActionResult> CreateUser([FromBody] CreateControllerDto createControllerDto)
+    public async Task<IActionResult> CreateController([FromBody] CreateControllerDto createControllerDto)
     {
         try
         {

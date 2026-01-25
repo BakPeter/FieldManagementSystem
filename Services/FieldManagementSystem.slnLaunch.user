@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "User\\FieldManagementSystem.Services.User\\FieldManagementSystem.Services.User.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "Field\\FieldManagementSystem.Services.Field\\FieldManagementSystem.Services.Field.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "Controller\\FieldManagementSystem.Services.Controller\\FieldManagementSystem.Services.Controller.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      }
+    ]
+  }
+]

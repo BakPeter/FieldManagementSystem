@@ -234,23 +234,103 @@
       "name": "Cotroller",
       "item": [
         {
-          "name": "get cotroller",
+          "name": "get controllers",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{CONTROLLER_API_HOST}}/?controllerId",
+              "raw": "{{CONTROLLER_API_HOST}}",
+              "host": [
+                "{{CONTROLLER_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get controller by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{CONTROLLER_API_HOST}}/94910ab3-0070-4684-8f94-218997d5528a",
               "host": [
                 "{{CONTROLLER_API_HOST}}"
               ],
               "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "controllerId",
-                  "value": null
+                "94910ab3-0070-4684-8f94-218997d5528a"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create controller",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Uv Monitor\",\r\n  \"controllerType\": \"Sensor\",\r\n  \"assiciatedFieldIds\": [\r\n    \"field-1-uuid\"\r\n  ],\r\n  \"authorizedUserIds\": [\r\n    \"admin-user-1-uuid\",\r\n    \"costumer-user-1-uuid\"\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
                 }
+              }
+            },
+            "url": {
+              "raw": "{{CONTROLLER_API_HOST}}",
+              "host": [
+                "{{CONTROLLER_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update controller",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"ae5bbadc-5ae5-4f3e-9200-a5e39a761103\",\r\n  \"controllerStatus\": \"Inactive\",\r\n  \"assiciatedFieldIds\": [\r\n    \"field-1-uuid\"\r\n  ],\r\n  \"authorizedUserIds\": [\r\n    \"admin-user-1-uuid\",\r\n    \"costumer-user-1-uuid\"\r\n  ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{CONTROLLER_API_HOST}}",
+              "host": [
+                "{{CONTROLLER_API_HOST}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete contoller",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"Jooohn@gmail.com\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Do\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{CONTROLLER_API_HOST}}/50395c73-32d7-4187-8882-5e22499e8211",
+              "host": [
+                "{{CONTROLLER_API_HOST}}"
+              ],
+              "path": [
+                "50395c73-32d7-4187-8882-5e22499e8211"
               ]
             }
           },
