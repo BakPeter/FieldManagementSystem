@@ -1,0 +1,6 @@
+@FieldManagementSystem.Services.Controller_HostAddress = http://localhost:5198
+
+GET {{FieldManagementSystem.Services.Controller_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
