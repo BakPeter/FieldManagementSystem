@@ -116,7 +116,7 @@ public class UserCachedRepositoryAdapterTests
         };
 
         // Act
-        var result = await _adapter.UpdateUser(userToUpdate);
+        var result = await _adapter.UpdateUserAsync(userToUpdate);
         var updatedUser = await _adapter.GetUserAsync(userToUpdate.Email);
 
         // Assert
@@ -132,7 +132,7 @@ public class UserCachedRepositoryAdapterTests
         var email = "mymail@gmail.com";
 
         // Act
-        var result = await _adapter.DeleteUser(email);
+        var result = await _adapter.DeleteUserAsync(email);
         var deletedUser = await _adapter.GetUserAsync(email);
 
         // Assert
@@ -147,7 +147,7 @@ public class UserCachedRepositoryAdapterTests
         var email = "nonexisting@gmail.com";
 
         // Act
-        var result = await _adapter.DeleteUser(email);
+        var result = await _adapter.DeleteUserAsync(email);
 
         // Assert
         Assert.That(result, Is.False);

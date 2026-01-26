@@ -20,7 +20,7 @@ public class UserRepository : IUserRepository
 
     public Task<UserEntity?> GetUserByEmailAsync(string email, CancellationToken ct = default)=> _adapter.GetUserByEmailAsync(email, ct);
 
-    public Task<bool> CreateUserAsync(UserEntity userToAdd, CancellationToken ct = default) => _adapter.CreateUserAsync(userToAdd, ct);
-    public Task<bool> UpdateUser(UserEntity userToUpdate, CancellationToken ct = default) => _adapter.UpdateUser(userToUpdate, ct);
-    public Task<bool> DeleteUser(string id, CancellationToken ct = default) => _adapter.DeleteUser(id, ct);
+    public Task<UserEntity?> CreateUserAsync(UserEntity userToAdd, CancellationToken ct = default) => _adapter.CreateUserAsync(userToAdd, ct);
+    public Task<bool> UpdateUser(UserEntity userToUpdate, CancellationToken ct = default) => _adapter.UpdateUserAsync(userToUpdate, ct);
+    public Task<bool> DeleteUser(string id, CancellationToken ct = default) => _adapter.DeleteUserAsync(id, ct);
 }

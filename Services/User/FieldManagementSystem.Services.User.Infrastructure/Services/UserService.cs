@@ -29,7 +29,7 @@ public class UserService : IUserService
         _logger.LogInformation("Get Users - Success: {Success} Result: {result}", result.IsSuccess, JsonSerializer.Serialize(result));
         return result;
     }
-
+   
     public async Task<Result<UserEntity>> GetUserAsync(string id)
     {
         var user = await _repository.GetUserAsync(id);
@@ -37,7 +37,7 @@ public class UserService : IUserService
         if (user == null)
         {
             var errorResult = new Result<UserEntity>(false, null,
-                new ArgumentException($"User with token {id} not found", nameof(id)));
+                new ArgumentException($"User with id {id} not found", nameof(id)));
 
             _logger.LogInformation("Get User - token: {token} Success: {Success} Error: {Error}",
                 id, errorResult.IsSuccess, errorResult.Error!.Message);
@@ -46,11 +46,34 @@ public class UserService : IUserService
         }
 
         var result = new Result<UserEntity>(true, user);
-        _logger.LogInformation("Get User - token: {token} Success: {Success} Result: {result}",
+        _logger.LogInformation("Get User - id: {token} Success: {Success} Result: {result}",
             id, result.IsSuccess, JsonSerializer.Serialize(result));
         return result;
 
     }
+
+    public async Task<Result<UserEntity>> GetUserByEmailAsync(string email)
+    {
+        var user = await _repository.GetUserByEmailAsync(email);
+
+        if (user == null)
+        {
+            var errorResult = new Result<UserEntity>(false, null,
+                new ArgumentException($"User with email {email} not found", nameof(email)));
+
+            _logger.LogInformation("Get User - email: {token} Success: {Success} Error: {Error}",
+                email, errorResult.IsSuccess, errorResult.Error!.Message);
+
+            return errorResult;
+        }
+
+        var result = new Result<UserEntity>(true, user);
+        _logger.LogInformation("Get User - email: {token} Success: {Success} Result: {result}",
+            email, result.IsSuccess, JsonSerializer.Serialize(result));
+        return result;
+    }
+
+
 
     public async Task<Result<UserEntity>> CreateUserAsync(CreateUserDto createUserDto)
     {
@@ -68,18 +91,21 @@ public class UserService : IUserService
         if (_validation.Validate(userToAdd, out var validationErrors) is false)
             return new Result<UserEntity>(false, null, new UserValidationException(validationErrors));
 
-        var getUserResult = await GetUserAsync(userToAdd.Email);
+        var getUserResult = await GetUserByEmailAsync(userToAdd.Email);
         if (getUserResult.IsSuccess)
             return new Result<UserEntity>(false, null,
                 new ArgumentException($"User with email {createUserDto.Email} exists", nameof(createUserDto)));
 
-        var isUserAdded = await _repository.CreateUserAsync(userToAdd);
-        return isUserAdded ? new Result<UserEntity>(true, userToAdd) : new Result<UserEntity>(false, null, new Exception("Failed to add user to repository."));
+        // var isUserAdded = (await _repository.CreateUserAsync(userToAdd)) != null;
+        var addedUser = await _repository.CreateUserAsync(userToAdd);
+        return addedUser is not null
+            ? new Result<UserEntity>(true, userToAdd)
+            : new Result<UserEntity>(false, null, new Exception("Failed to add user to repository."));
     }
 
     public async Task<Result<string>> UpdateUser(UpdateUserDto updateUserDto)
     {
-        var getUserResponse = await GetUserAsync(updateUserDto.Email);
+        var getUserResponse = await GetUserByEmailAsync(updateUserDto.Email);
         if (getUserResponse.IsSuccess is false)
             return new Result<string>(false, null,
                 new ArgumentException($"User with email {updateUserDto.Email} not found", nameof(updateUserDto)));
@@ -106,7 +132,7 @@ public class UserService : IUserService
 
     public async Task<Result<string>> DeleteUserAsync(string id)
     {
-        var getUserResponse = await GetUserAsync(id);
+        var getUserResponse = await GetUserByEmailAsync(id);
         if (getUserResponse.IsSuccess is false)
             return new Result<string>(false, null,
                 new ArgumentException($"User with email {id} not found", nameof(id)));

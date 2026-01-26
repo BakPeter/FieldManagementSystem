@@ -6,6 +6,10 @@
 # 2. Builds a new Docker image from the published artifacts.
 # 3. Restarts the services defined in the docker-compose.yaml file to use the new image.
 
+param(
+    [switch]$WithInfra
+)
+
 # --- Configuration ---
 $ComposeFile = ".\docker-compose.yaml"
 $ComposeInfraFile = ".\docker-compose-infra.yaml"

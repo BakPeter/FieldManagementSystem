@@ -52,26 +52,26 @@ public class UserCachedRepositoryAdapter : IUserRepositoryAdapter
         throw new NotImplementedException();
     }
 
-    public Task<bool> CreateUserAsync(UserEntity userToAdd, CancellationToken ct = default)
+    public Task<UserEntity?> CreateUserAsync(UserEntity userToAdd, CancellationToken ct = default)
     {
-        return Task.FromResult(_data.TryAdd(userToAdd.Email, userToAdd));
+        return Task.FromResult(_data.TryAdd(userToAdd.Email, userToAdd) ? userToAdd : null);
     }
 
-    public Task<bool> UpdateUser(UserEntity userToUpdate, CancellationToken ct = default)
+    public Task<bool> UpdateUserAsync(UserEntity userToUpdate, CancellationToken ct = default)
     {
         try
         {
             _data[userToUpdate.Email] = userToUpdate;
             return Task.FromResult(true);
         }
-        catch (Exception )
+        catch (Exception)
         {
             _logger.LogError("Failed To Update User, {userToUpdate}", userToUpdate);
             throw;
         }
     }
 
-    public Task<bool> DeleteUser(string id, CancellationToken ct = default)
+    public Task<bool> DeleteUserAsync(string id, CancellationToken ct = default)
     {
         return Task.FromResult(_data.TryRemove(id, out _));
     }

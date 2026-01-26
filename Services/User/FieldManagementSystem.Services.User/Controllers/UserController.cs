@@ -38,21 +38,21 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Get User by User id.
-    /// User id is User is email registration.
+    /// Get User by User email.
+    /// User email is User is email registration.
     /// </summary>
-    /// <param name="id">User registration email</param>
+    /// <param name="email">User registration email</param>
     /// <returns></returns>
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetUser(string id)
+    [HttpGet("{email}")]
+    public async Task<IActionResult> GetUser(string email)
     {
         try
         {
-            var response = await _service.GetUserAsync(id);
+            var response = await _service.GetUserByEmailAsync(email);
             if (response.IsSuccess) return Ok(response.Data);
 
-            _logger.LogInformation("Get User by id - {Success}: id: {id} response: {response}",
-                response.IsSuccess, id, JsonSerializer.Serialize(response));
+            _logger.LogInformation("Get User by email - {Success}: email: {email} response: {response}",
+                response.IsSuccess, email, JsonSerializer.Serialize(response));
 
             return BadRequest(response.Error!.Message);
         }
@@ -70,7 +70,7 @@ public class UserController : ControllerBase
         {
             var response = await _service.CreateUserAsync(createUserDto);
             if (response.IsSuccess)
-                return CreatedAtAction(nameof(GetUser), new { id = response.Data!.Email }, response.Data);
+                return CreatedAtAction(nameof(GetUser), new { email = response.Data!.Email }, response.Data);
 
             _logger.LogInformation("Create - {Success}: createUserDto: {createUserDto} response: {response}",
                 response.IsSuccess, createUserDto, JsonSerializer.Serialize(response));
@@ -120,7 +120,7 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// DeleteUser by User id.
+    /// DeleteUserAsync by User id.
     /// User id is User is email registration.
     /// </summary>
     /// <param name="id">User registration email</param>
@@ -148,12 +148,12 @@ public class UserController : ControllerBase
     {
         _logger.LogError(error.Message);
 
-        var problem = new ProblemDetails
-        {
-            Status = StatusCodes.Status500InternalServerError,
-            Title = "Bad Request",
-            Detail = error.Message,
-        };
-        return BadRequest(problem);
+        // var problem = new ProblemDetails
+        // {
+        //     Status = StatusCodes.Status500InternalServerError,
+        //     Title = "Bad Request",
+        //     Detail = error.Message,
+        // };
+        return Problem(title: "Server Error", detail: error.Message, statusCode: 500);
     }
 }
