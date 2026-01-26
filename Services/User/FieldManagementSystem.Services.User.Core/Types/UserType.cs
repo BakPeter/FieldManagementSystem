@@ -2,6 +2,6 @@
 
 public enum UserType
 {
-    Admin,
-    Costumer
+    Admin = 0,
+    Costumer = 1
 }

@@ -15,9 +15,12 @@ public class UserRepository : IUserRepository
         _adapter = adapter;
     }
 
-    public Task<IEnumerable<UserEntity>> GetAllUsersAsync() => _adapter.GetAllUsersAsync();
-    public Task<UserEntity?> GetUserAsync(string token) => _adapter.GetUserAsync(token);
-    public Task<bool> CreateUserAsync(UserEntity userToAdd) => _adapter.CreateUserAsync(userToAdd);
-    public Task<bool> UpdateUser(UserEntity userToUpdate) => _adapter.UpdateUser(userToUpdate);
-    public Task<bool> DeleteUser(string id) => _adapter.DeleteUser(id);
+    public Task<IEnumerable<UserEntity>> GetAllUsersAsync(CancellationToken ct = default) => _adapter.GetAllUsersAsync(ct);
+    public Task<UserEntity?> GetUserAsync(string id, CancellationToken ct = default) => _adapter.GetUserAsync(id, ct);
+
+    public Task<UserEntity?> GetUserByEmailAsync(string email, CancellationToken ct = default)=> _adapter.GetUserByEmailAsync(email, ct);
+
+    public Task<bool> CreateUserAsync(UserEntity userToAdd, CancellationToken ct = default) => _adapter.CreateUserAsync(userToAdd, ct);
+    public Task<bool> UpdateUser(UserEntity userToUpdate, CancellationToken ct = default) => _adapter.UpdateUser(userToUpdate, ct);
+    public Task<bool> DeleteUser(string id, CancellationToken ct = default) => _adapter.DeleteUser(id, ct);
 }

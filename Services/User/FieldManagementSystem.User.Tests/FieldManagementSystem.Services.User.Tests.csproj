@@ -6,7 +6,7 @@
   <ImplicitUsings>enable</ImplicitUsings>
   <Nullable>enable</Nullable>
   <IsPackable>false</IsPackable>
-  <Configurations>Debug;Release;All;All Debyg</Configurations>
+  <Configurations>Debug;Release;All;All Debyg;Debug All</Configurations>
   <Platforms>AnyCPU;x64</Platforms>
 </PropertyGroup>
 

@@ -1,6 +1,6 @@
 [
   {
-    "Name": "New Profile",
+    "Name": "All",
     "Projects": [
       {
         "Path": "User\\FieldManagementSystem.Services.User\\FieldManagementSystem.Services.User.csproj",

@@ -36,23 +36,28 @@ public class UserCachedRepositoryAdapter : IUserRepositoryAdapter
         _logger = logger;
     }
 
-    public Task<IEnumerable<UserEntity>> GetAllUsersAsync()
+    public Task<IEnumerable<UserEntity>> GetAllUsersAsync(CancellationToken ct = default)
     {
         return Task.FromResult(_data.Values.AsEnumerable());
     }
 
-    public Task<UserEntity?> GetUserAsync(string token)
+    public Task<UserEntity?> GetUserAsync(string email, CancellationToken ct = default)
     {
-        _ = _data.TryGetValue(token, out var user);
+        _ = _data.TryGetValue(email, out var user);
         return Task.FromResult(user);
     }
 
-    public Task<bool> CreateUserAsync(UserEntity userToAdd)
+    public Task<UserEntity?> GetUserByEmailAsync(string email, CancellationToken ct = default)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<bool> CreateUserAsync(UserEntity userToAdd, CancellationToken ct = default)
     {
         return Task.FromResult(_data.TryAdd(userToAdd.Email, userToAdd));
     }
 
-    public Task<bool> UpdateUser(UserEntity userToUpdate)
+    public Task<bool> UpdateUser(UserEntity userToUpdate, CancellationToken ct = default)
     {
         try
         {
@@ -66,7 +71,7 @@ public class UserCachedRepositoryAdapter : IUserRepositoryAdapter
         }
     }
 
-    public Task<bool> DeleteUser(string id)
+    public Task<bool> DeleteUser(string id, CancellationToken ct = default)
     {
         return Task.FromResult(_data.TryRemove(id, out _));
     }

@@ -4,9 +4,10 @@ namespace FieldManagementSystem.Services.User.Core.Interfaces.Repository;
 
 public interface IUserRepositoryAdapter
 {
-    Task<IEnumerable<UserEntity>> GetAllUsersAsync();
-    Task<UserEntity?> GetUserAsync(string token);
-    Task<bool> CreateUserAsync(UserEntity userToAdd);
-    Task<bool> UpdateUser(UserEntity userToUpdate);
-    Task<bool> DeleteUser(string id);
+    Task<IEnumerable<UserEntity>> GetAllUsersAsync(CancellationToken ct = default);
+    Task<UserEntity?> GetUserAsync(string email, CancellationToken ct = default);
+    Task<UserEntity?> GetUserByEmailAsync(string email, CancellationToken ct = default);
+    Task<bool> CreateUserAsync(UserEntity userToAdd, CancellationToken ct = default);
+    Task<bool> UpdateUser(UserEntity userToUpdate, CancellationToken ct = default);
+    Task<bool> DeleteUser(string id, CancellationToken ct = default);
 }

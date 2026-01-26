@@ -7,7 +7,7 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <Configurations>Debug;Release;All;All Debyg</Configurations>
+    <Configurations>Debug;Release;All;All Debyg;Debug All</Configurations>
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
