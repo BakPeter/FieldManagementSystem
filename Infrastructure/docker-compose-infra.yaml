@@ -12,6 +12,31 @@ services:
     restart: unless-stopped
     networks:
       - fsm_shared_network
+  db:
+    image: postgres:16-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: fms_db
+      POSTGRES_USER: fms_user
+      POSTGRES_PASSWORD: fms_password
+    volumes:
+      - C:\Mounts\FMS\Postgres:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - fsm_shared_network
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_fms
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@fms.com
+      PGADMIN_DEFAULT_PASSWORD: admin_password
+    ports:
+      - '5050:80'
+    volumes:
+      - C:\Mounts\FMS\PgAdmin:/var/lib/pgadmin
+    restart: unless-stopped
+    networks:
+      - fsm_shared_network
 
 networks:
   fsm_shared_network:
