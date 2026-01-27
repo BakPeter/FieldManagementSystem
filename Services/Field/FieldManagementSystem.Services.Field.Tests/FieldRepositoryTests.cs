@@ -45,13 +45,13 @@ public class FieldRepositoryTests
     {
         // Arrange
         var expectedFields = new List<FieldEntity> { new() { Id = Guid.NewGuid() } };
-        _mockAdapter.Setup(a => a.GetAllFieldsAsync()).ReturnsAsync(expectedFields);
+        _mockAdapter.Setup(a => a.GetAllFieldsAsync(CancellationToken.None)).ReturnsAsync(expectedFields);
 
         // Act
-        var result = await _fieldRepository.GetAllFieldsAsync();
+        var result = await _fieldRepository.GetAllFieldsAsync(CancellationToken.None);
 
         // Assert
-        _mockAdapter.Verify(a => a.GetAllFieldsAsync(), Times.Once);
+        _mockAdapter.Verify(a => a.GetAllFieldsAsync(CancellationToken.None), Times.Once);
         Assert.That(result, Is.EqualTo(expectedFields));
     }
 
@@ -62,13 +62,13 @@ public class FieldRepositoryTests
         // Arrange
         var fieldName = "TestField";
         var expectedField = new FieldEntity { Id = Guid.NewGuid(), Name = fieldName };
-        _mockAdapter.Setup(a => a.GetFieldByNameAsync(fieldName)).ReturnsAsync(expectedField);
+        _mockAdapter.Setup(a => a.GetFieldByNameAsync(fieldName, CancellationToken.None)).ReturnsAsync(expectedField);
 
         // Act
         var result = await _fieldRepository.GetFieldByNameAsync(fieldName);
 
         // Assert
-        _mockAdapter.Verify(a => a.GetFieldByNameAsync(fieldName), Times.Once);
+        _mockAdapter.Verify(a => a.GetFieldByNameAsync(fieldName, CancellationToken.None), Times.Once);
         Assert.That(result, Is.EqualTo(expectedField));
     }
 
@@ -77,13 +77,13 @@ public class FieldRepositoryTests
     {
         // Arrange
         var fieldName = "NonExistent";
-        _mockAdapter.Setup(a => a.GetFieldByNameAsync(fieldName)).ReturnsAsync(null as FieldEntity);
+        _mockAdapter.Setup(a => a.GetFieldByNameAsync(fieldName, CancellationToken.None)).ReturnsAsync(null as FieldEntity);
 
         // Act
         var result = await _fieldRepository.GetFieldByNameAsync(fieldName);
 
         // Assert
-        _mockAdapter.Verify(a => a.GetFieldByNameAsync(fieldName), Times.Once);
+        _mockAdapter.Verify(a => a.GetFieldByNameAsync(fieldName, CancellationToken.None), Times.Once);
         Assert.That(result, Is.Null);
     }
 
@@ -94,13 +94,13 @@ public class FieldRepositoryTests
         // Arrange
         var fieldId = Guid.NewGuid().ToString();
         var expectedField = new FieldEntity { Id = Guid.Parse(fieldId) };
-        _mockAdapter.Setup(a => a.GetFieldAsync(fieldId)).ReturnsAsync(expectedField);
+        _mockAdapter.Setup(a => a.GetFieldAsync(fieldId, CancellationToken.None)).ReturnsAsync(expectedField);
 
         // Act
-        var result = await _fieldRepository.GetFieldAsync(fieldId);
+        var result = await _fieldRepository.GetFieldAsync(fieldId, CancellationToken.None);
 
         // Assert
-        _mockAdapter.Verify(a => a.GetFieldAsync(fieldId), Times.Once);
+        _mockAdapter.Verify(a => a.GetFieldAsync(fieldId, CancellationToken.None), Times.Once);
         Assert.That(result, Is.EqualTo(expectedField));
     }
 
@@ -109,13 +109,13 @@ public class FieldRepositoryTests
     {
         // Arrange
         var fieldId = Guid.NewGuid().ToString();
-        _mockAdapter.Setup(a => a.GetFieldAsync(fieldId)).ReturnsAsync(null as FieldEntity);
+        _mockAdapter.Setup(a => a.GetFieldAsync(fieldId, CancellationToken.None)).ReturnsAsync(null as FieldEntity);
 
         // Act
-        var result = await _fieldRepository.GetFieldAsync(fieldId);
+        var result = await _fieldRepository.GetFieldAsync(fieldId, CancellationToken.None);
 
         // Assert
-        _mockAdapter.Verify(a => a.GetFieldAsync(fieldId), Times.Once);
+        _mockAdapter.Verify(a => a.GetFieldAsync(fieldId, CancellationToken.None), Times.Once);
         Assert.That(result, Is.Null);
     }
 
@@ -125,13 +125,13 @@ public class FieldRepositoryTests
     {
         // Arrange
         var fieldToAdd = new FieldEntity { Id = Guid.NewGuid(), Name = "NewField" };
-        _mockAdapter.Setup(a => a.CreateFieldAsync(fieldToAdd)).ReturnsAsync(true);
+        _mockAdapter.Setup(a => a.CreateFieldAsync(fieldToAdd, CancellationToken.None)).ReturnsAsync(true);
 
         // Act
         var result = await _fieldRepository.CreateFieldAsync(fieldToAdd);
 
         // Assert
-        _mockAdapter.Verify(a => a.CreateFieldAsync(fieldToAdd), Times.Once);
+        _mockAdapter.Verify(a => a.CreateFieldAsync(fieldToAdd, CancellationToken.None), Times.Once);
         Assert.That(result, Is.True);
     }
 
@@ -141,13 +141,13 @@ public class FieldRepositoryTests
     {
         // Arrange
         var fieldToUpdate = new FieldEntity { Id = Guid.NewGuid(), Name = "UpdatedField" };
-        _mockAdapter.Setup(a => a.UpdateField(fieldToUpdate)).ReturnsAsync(true);
+        _mockAdapter.Setup(a => a.UpdateField(fieldToUpdate, CancellationToken.None)).ReturnsAsync(true);
 
         // Act
         var result = await _fieldRepository.UpdateField(fieldToUpdate);
 
         // Assert
-        _mockAdapter.Verify(a => a.UpdateField(fieldToUpdate), Times.Once);
+        _mockAdapter.Verify(a => a.UpdateField(fieldToUpdate, CancellationToken.None), Times.Once);
         Assert.That(result, Is.True);
     }
 
@@ -157,13 +157,13 @@ public class FieldRepositoryTests
     {
         // Arrange
         var fieldId = Guid.NewGuid().ToString();
-        _mockAdapter.Setup(a => a.DeleteField(fieldId)).ReturnsAsync(true);
+        _mockAdapter.Setup(a => a.DeleteField(fieldId, CancellationToken.None)).ReturnsAsync(true);
 
         // Act
         var result = await _fieldRepository.DeleteField(fieldId);
 
         // Assert
-        _mockAdapter.Verify(a => a.DeleteField(fieldId), Times.Once);
+        _mockAdapter.Verify(a => a.DeleteField(fieldId, CancellationToken.None), Times.Once);
         Assert.That(result, Is.True);
     }
 }

@@ -45,7 +45,7 @@ public class FieldControllerTests
             new() { Id = Guid.NewGuid(), Name = "Field1" },
             new() { Id = Guid.NewGuid(), Name = "Field2" }
         };
-        _mockFieldService.Setup(s => s.GetFieldsAsync()).ReturnsAsync(new Result<IEnumerable<FieldEntity>>(true, fields));
+        _mockFieldService.Setup(s => s.GetFieldsAsync(default)).ReturnsAsync(new Result<IEnumerable<FieldEntity>>(true, fields));
 
         // Act
         var result = await _fieldController.GetFields();
@@ -63,7 +63,7 @@ public class FieldControllerTests
     {
         // Arrange
         var errorMessage = "Service failed to get fields";
-        _mockFieldService.Setup(s => s.GetFieldsAsync()).ReturnsAsync(new Result<IEnumerable<FieldEntity>>(false, null, new Exception(errorMessage)));
+        _mockFieldService.Setup(s => s.GetFieldsAsync(default)).ReturnsAsync(new Result<IEnumerable<FieldEntity>>(false, null, new Exception(errorMessage)));
 
         // Act
         var result = await _fieldController.GetFields();
@@ -80,7 +80,7 @@ public class FieldControllerTests
     {
         // Arrange
         var exceptionMessage = "An unexpected error occurred";
-        _mockFieldService.Setup(s => s.GetFieldsAsync()).ThrowsAsync(new Exception(exceptionMessage));
+        _mockFieldService.Setup(s => s.GetFieldsAsync(default)).ThrowsAsync(new Exception(exceptionMessage));
 
         // Act
         var result = await _fieldController.GetFields();
@@ -103,7 +103,7 @@ public class FieldControllerTests
         // Arrange
         var fieldId = Guid.NewGuid();
         var field = new FieldEntity { Id = fieldId, Name = "TestField" };
-        _mockFieldService.Setup(s => s.GetFieldAsync(fieldId.ToString())).ReturnsAsync(new Result<FieldEntity>(true, field));
+        _mockFieldService.Setup(s => s.GetFieldAsync(fieldId.ToString(), CancellationToken.None)).ReturnsAsync(new Result<FieldEntity>(true, field));
 
         // Act
         var result = await _fieldController.GetField(fieldId.ToString());
@@ -122,7 +122,7 @@ public class FieldControllerTests
         // Arrange
         var fieldId = Guid.NewGuid();
         var errorMessage = $"Field with id {fieldId} not found";
-        _mockFieldService.Setup(s => s.GetFieldAsync(fieldId.ToString())).ReturnsAsync(new Result<FieldEntity>(false, null, new ArgumentException(errorMessage)));
+        _mockFieldService.Setup(s => s.GetFieldAsync(fieldId.ToString(), CancellationToken.None)).ReturnsAsync(new Result<FieldEntity>(false, null, new ArgumentException(errorMessage)));
 
         // Act
         var result = await _fieldController.GetField(fieldId.ToString());
@@ -140,7 +140,7 @@ public class FieldControllerTests
         // Arrange
         var fieldId = Guid.NewGuid();
         var exceptionMessage = "An unexpected error occurred during GetField";
-        _mockFieldService.Setup(s => s.GetFieldAsync(fieldId.ToString())).ThrowsAsync(new Exception(exceptionMessage));
+        _mockFieldService.Setup(s => s.GetFieldAsync(fieldId.ToString(), CancellationToken.None)).ThrowsAsync(new Exception(exceptionMessage));
 
         // Act
         var result = await _fieldController.GetField(fieldId.ToString());
@@ -163,7 +163,7 @@ public class FieldControllerTests
         // Arrange
         var createDto = new CreateFieldDto { Name = "NewField", Description = "Desc" };
         var createdField = new FieldEntity { Id = Guid.NewGuid(), Name = createDto.Name, Description = createDto.Description };
-        _mockFieldService.Setup(s => s.CreateFieldAsync(createDto)).ReturnsAsync(new Result<FieldEntity>(true, createdField));
+        _mockFieldService.Setup(s => s.CreateFieldAsync(createDto, CancellationToken.None)).ReturnsAsync(new Result<FieldEntity>(true, createdField));
 
         // Act
         var result = await _fieldController.CreateField(createDto);
@@ -185,7 +185,7 @@ public class FieldControllerTests
         var createDto = new CreateFieldDto { Name = "NF" };
         var validationErrors = new List<string> { "Name too short" };
         var validationException = new FieldValidationException(validationErrors);
-        _mockFieldService.Setup(s => s.CreateFieldAsync(createDto)).ReturnsAsync(new Result<FieldEntity>(false, null, validationException));
+        _mockFieldService.Setup(s => s.CreateFieldAsync(createDto, CancellationToken.None)).ReturnsAsync(new Result<FieldEntity>(false, null, validationException));
 
         // Act
         var result = await _fieldController.CreateField(createDto);
@@ -208,7 +208,7 @@ public class FieldControllerTests
         // Arrange
         var createDto = new CreateFieldDto { Name = "NewField" };
         var errorMessage = "Failed to create field";
-        _mockFieldService.Setup(s => s.CreateFieldAsync(createDto)).ReturnsAsync(new Result<FieldEntity>(false, null, new Exception(errorMessage)));
+        _mockFieldService.Setup(s => s.CreateFieldAsync(createDto, CancellationToken.None)).ReturnsAsync(new Result<FieldEntity>(false, null, new Exception(errorMessage)));
 
         // Act
         var result = await _fieldController.CreateField(createDto);
@@ -226,7 +226,7 @@ public class FieldControllerTests
         // Arrange
         var createDto = new CreateFieldDto { Name = "NewField" };
         var exceptionMessage = "An unexpected error occurred during CreateField";
-        _mockFieldService.Setup(s => s.CreateFieldAsync(createDto)).ThrowsAsync(new Exception(exceptionMessage));
+        _mockFieldService.Setup(s => s.CreateFieldAsync(createDto, CancellationToken.None)).ThrowsAsync(new Exception(exceptionMessage));
 
         // Act
         var result = await _fieldController.CreateField(createDto);
@@ -249,7 +249,7 @@ public class FieldControllerTests
         // Arrange
         var updateDto = new UpdateFieldDto { Id = Guid.NewGuid().ToString(), Description = "UpdatedField" };
         var successMessage = $"Field with id {updateDto.Id} updated";
-        _mockFieldService.Setup(s => s.UpdateField(updateDto)).ReturnsAsync(new Result<string>(true, successMessage));
+        _mockFieldService.Setup(s => s.UpdateField(updateDto, CancellationToken.None)).ReturnsAsync(new Result<string>(true, successMessage));
 
         // Act
         var result = await _fieldController.UpdateField(updateDto);
@@ -268,7 +268,7 @@ public class FieldControllerTests
         var updateDto = new UpdateFieldDto { Id = Guid.NewGuid().ToString(), Description = "U" };
         var validationErrors = new List<string> { "Name too short" };
         var validationException = new FieldValidationException(validationErrors);
-        _mockFieldService.Setup(s => s.UpdateField(updateDto)).ReturnsAsync(new Result<string>(false, null, validationException));
+        _mockFieldService.Setup(s => s.UpdateField(updateDto, CancellationToken.None)).ReturnsAsync(new Result<string>(false, null, validationException));
 
         // Act
         var result = await _fieldController.UpdateField(updateDto);
@@ -291,7 +291,7 @@ public class FieldControllerTests
         // Arrange
         var updateDto = new UpdateFieldDto { Id = Guid.NewGuid().ToString(), Description = "UpdatedField" };
         var errorMessage = "Failed to update field";
-        _mockFieldService.Setup(s => s.UpdateField(updateDto)).ReturnsAsync(new Result<string>(false, null, new Exception(errorMessage)));
+        _mockFieldService.Setup(s => s.UpdateField(updateDto, CancellationToken.None)).ReturnsAsync(new Result<string>(false, null, new Exception(errorMessage)));
 
         // Act
         var result = await _fieldController.UpdateField(updateDto);
@@ -309,7 +309,7 @@ public class FieldControllerTests
         // Arrange
         var updateDto = new UpdateFieldDto { Id = Guid.NewGuid().ToString(), Description = "UpdatedField" };
         var exceptionMessage = "An unexpected error occurred during UpdateField";
-        _mockFieldService.Setup(s => s.UpdateField(updateDto)).ThrowsAsync(new Exception(exceptionMessage));
+        _mockFieldService.Setup(s => s.UpdateField(updateDto, CancellationToken.None)).ThrowsAsync(new Exception(exceptionMessage));
 
         // Act
         var result = await _fieldController.UpdateField(updateDto);
@@ -332,7 +332,7 @@ public class FieldControllerTests
         // Arrange
         var fieldId = Guid.NewGuid().ToString();
         var successMessage = $"Field {fieldId} deleted";
-        _mockFieldService.Setup(s => s.DeleteFieldAsync(fieldId)).ReturnsAsync(new Result<string>(true, successMessage));
+        _mockFieldService.Setup(s => s.DeleteFieldAsync(fieldId, CancellationToken.None)).ReturnsAsync(new Result<string>(true, successMessage));
 
         // Act
         var result = await _fieldController.DeleteField(fieldId);
@@ -350,7 +350,7 @@ public class FieldControllerTests
         // Arrange
         var fieldId = Guid.NewGuid().ToString();
         var errorMessage = $"Field with id {fieldId} not found";
-        _mockFieldService.Setup(s => s.DeleteFieldAsync(fieldId)).ReturnsAsync(new Result<string>(false, null, new ArgumentException(errorMessage)));
+        _mockFieldService.Setup(s => s.DeleteFieldAsync(fieldId, CancellationToken.None)).ReturnsAsync(new Result<string>(false, null, new ArgumentException(errorMessage)));
 
         // Act
         var result = await _fieldController.DeleteField(fieldId);
@@ -368,7 +368,7 @@ public class FieldControllerTests
         // Arrange
         var fieldId = Guid.NewGuid().ToString();
         var exceptionMessage = "An unexpected error occurred during DeleteField";
-        _mockFieldService.Setup(s => s.DeleteFieldAsync(fieldId)).ThrowsAsync(new Exception(exceptionMessage));
+        _mockFieldService.Setup(s => s.DeleteFieldAsync(fieldId, CancellationToken.None)).ThrowsAsync(new Exception(exceptionMessage));
 
         // Act
         var result = await _fieldController.DeleteField(fieldId);

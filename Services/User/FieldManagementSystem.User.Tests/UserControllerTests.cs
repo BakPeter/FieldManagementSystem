@@ -103,7 +103,7 @@ public class UserControllerTests
         _mockUserService.Setup(s => s.GetUserAsync(email)).ReturnsAsync(new Result<UserEntity>(true, user));
 
         // Act
-        var result = await _userController.GetUser(email);
+        var result = await _userController.GetUser("email",email);
 
         // Assert
         Assert.That(result, Is.InstanceOf<OkObjectResult>());
@@ -124,7 +124,7 @@ public class UserControllerTests
             // .ReturnsAsync(new Result<UserEntity>(false, null, new ArgumentException("User not found")));
 
         // Act
-        var result = await _userController.GetUser(email);
+        var result = await _userController.GetUser("email",email);
 
         // Assert
         Assert.That(result, Is.InstanceOf<BadRequestObjectResult>());

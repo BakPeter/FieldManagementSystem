@@ -18,9 +18,10 @@ public static class ServicesCollectionExtension
     {
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IUserRepository, UserRepository>();
+
         // services.AddSingleton<IUserRepositoryAdapter, UserCachedRepositoryAdapter>();
         services.AddScoped<IUserRepositoryAdapter, EfRepositoryAdapter>();
-
+        
         services.AddScoped<IUserValidation, UserValidation>();
         services.AddScoped<IUserValidator, UserEmailValidator>();
         services.AddScoped<IUserValidator, UserNameValidator>();
@@ -29,6 +30,7 @@ public static class ServicesCollectionExtension
         // EF
         services.AddDbContext<AppDbContext>(opt =>
             opt.UseNpgsql(pgSettings.ConnectionString));
+
         return services;
     }
 }

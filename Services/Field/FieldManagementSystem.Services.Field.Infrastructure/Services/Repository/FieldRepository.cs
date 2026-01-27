@@ -15,9 +15,9 @@ public class FieldRepository : IFieldRepository
         _adapter = adapter;
     }
 
-    public Task<IEnumerable<FieldEntity>> GetAllFieldsAsync() => _adapter.GetAllFieldsAsync();
+    public Task<List<FieldEntity>> GetAllFieldsAsync(CancellationToken ct) => _adapter.GetAllFieldsAsync(ct);
     public Task<FieldEntity?> GetFieldByNameAsync(string name) => _adapter.GetFieldByNameAsync(name);
-    public Task<FieldEntity?> GetFieldAsync(string id) => _adapter.GetFieldAsync(id);
+    public Task<FieldEntity?> GetFieldAsync(string id, CancellationToken ct = default) => _adapter.GetFieldAsync(id, ct);
     public Task<bool> CreateFieldAsync(FieldEntity fieldToAdd) => _adapter.CreateFieldAsync(fieldToAdd);
     public Task<bool> UpdateField(FieldEntity fieldToUpdate) => _adapter.UpdateField(fieldToUpdate);
     public Task<bool> DeleteField(string id) => _adapter.DeleteField(id);

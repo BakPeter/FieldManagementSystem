@@ -38,7 +38,7 @@ public class UserEmailValidatorTests
     [Test]
     public void Validate_ValidEmail_ReturnsTrueAndNoErrors()
     {
-        // Arrange - Setup provides a valid email
+        // Arrange - Setup provides a valid id
 
         // Act
         var result = _validator.Validate(_user, ref _validationErrors);

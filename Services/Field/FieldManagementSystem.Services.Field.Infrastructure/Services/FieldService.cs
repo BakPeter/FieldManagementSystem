@@ -22,17 +22,17 @@ public class FieldService : IFieldService
         _validation = validation;
     }
 
-    public async Task<Result<IEnumerable<FieldEntity>>> GetFieldsAsync()
+    public async Task<Result<IEnumerable<FieldEntity>>> GetFieldsAsync(CancellationToken ct = default)
     {
-        var fields = (await _repository.GetAllFieldsAsync()).ToList();
+        var fields = (await _repository.GetAllFieldsAsync(ct)).ToList();
         var result = new Result<IEnumerable<FieldEntity>>(true, fields);
         _logger.LogInformation("Get Fields- Success: {Success} Result: {result}", result.IsSuccess, JsonSerializer.Serialize(result));
         return result;
     }
 
-    public async Task<Result<FieldEntity>> GetFieldAsync(string id)
+    public async Task<Result<FieldEntity>> GetFieldAsync(string id, CancellationToken ct)
     {
-        var field = await _repository.GetFieldAsync(id);
+        var field = await _repository.GetFieldAsync(id, ct);
 
         if (field == null)
         {
@@ -52,7 +52,7 @@ public class FieldService : IFieldService
 
     }
 
-    public async Task<Result<FieldEntity>> CreateFieldAsync(CreateFieldDto createFieldDto)
+    public async Task<Result<FieldEntity>> CreateFieldAsync(CreateFieldDto createFieldDto, CancellationToken ct = default)
     {
         var currentTime = DateTime.UtcNow;
         var fieldToAdd = new FieldEntity()
@@ -77,9 +77,9 @@ public class FieldService : IFieldService
         return isFieldAdded ? new Result<FieldEntity>(true, fieldToAdd) : new Result<FieldEntity>(false, null, new Exception("Failed to add Field to repository."));
     }
 
-    public async Task<Result<string>> UpdateField(UpdateFieldDto updateFieldDto)
+    public async Task<Result<string>> UpdateField(UpdateFieldDto updateFieldDto, CancellationToken ct = default)
     {
-        var getFieldResponse = await GetFieldAsync(updateFieldDto.Id);
+        var getFieldResponse = await GetFieldAsync(updateFieldDto.Id, CancellationToken.None);
         if (getFieldResponse.IsSuccess is false)
             return new Result<string>(false, null,
                 new ArgumentException($"Field with id {updateFieldDto.Id} not found", nameof(updateFieldDto)));
@@ -104,9 +104,9 @@ public class FieldService : IFieldService
             : new Result<string>(false, null, new Exception($"Field {updatedField.Id} update failed"));
     }
 
-    public async Task<Result<string>> DeleteFieldAsync(string id)
+    public async Task<Result<string>> DeleteFieldAsync(string id, CancellationToken ct = default)
     {
-        var getFieldResponse = await GetFieldAsync(id);
+        var getFieldResponse = await GetFieldAsync(id, CancellationToken.None);
         if (getFieldResponse.IsSuccess is false)
             return new Result<string>(false, null,
                 new ArgumentException($"Field with id {id} not found", nameof(id)));

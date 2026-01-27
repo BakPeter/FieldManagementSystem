@@ -1,7 +1,7 @@
 ﻿using FieldManagementSystem.Services.User.Core.Types;
 using Microsoft.EntityFrameworkCore;
 
-namespace FieldManagementSystem.Services.User.Infrastructure.Configurations.Repository.EF;
+namespace FieldManagementSystem.Services.User.Infrastructure.Services.Repository.EF;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {

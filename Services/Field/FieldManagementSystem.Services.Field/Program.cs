@@ -1,11 +1,13 @@
 using Serilog;
 using System.Text.Json.Serialization;
+using FieldManagementSystem.Services.Field.Core.Types.Repository.EF;
 using FieldManagementSystem.Services.Field.Infrastructure.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddFieldServices();
+var pgSettings = builder.Configuration.GetSection("EfRepositoryAdapterSettings").Get<EfRepositoryAdapterSettings>()!;
+builder.Services.AddFieldServices(pgSettings);
 
 builder.Host.UseSerilog((ctx, lc) =>
 {

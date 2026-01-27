@@ -59,16 +59,16 @@ public class UserService : IUserService
         if (user == null)
         {
             var errorResult = new Result<UserEntity>(false, null,
-                new ArgumentException($"User with email {email} not found", nameof(email)));
+                new ArgumentException($"User with id {email} not found", nameof(email)));
 
-            _logger.LogInformation("Get User - email: {token} Success: {Success} Error: {Error}",
+            _logger.LogInformation("Get User - id: {token} Success: {Success} Error: {Error}",
                 email, errorResult.IsSuccess, errorResult.Error!.Message);
 
             return errorResult;
         }
 
         var result = new Result<UserEntity>(true, user);
-        _logger.LogInformation("Get User - email: {token} Success: {Success} Result: {result}",
+        _logger.LogInformation("Get User - id: {token} Success: {Success} Result: {result}",
             email, result.IsSuccess, JsonSerializer.Serialize(result));
         return result;
     }
@@ -94,7 +94,7 @@ public class UserService : IUserService
         var getUserResult = await GetUserByEmailAsync(userToAdd.Email);
         if (getUserResult.IsSuccess)
             return new Result<UserEntity>(false, null,
-                new ArgumentException($"User with email {createUserDto.Email} exists", nameof(createUserDto)));
+                new ArgumentException($"User with id {createUserDto.Email} exists", nameof(createUserDto)));
 
         // var isUserAdded = (await _repository.CreateUserAsync(userToAdd)) != null;
         var addedUser = await _repository.CreateUserAsync(userToAdd);
@@ -108,7 +108,7 @@ public class UserService : IUserService
         var getUserResponse = await GetUserByEmailAsync(updateUserDto.Email);
         if (getUserResponse.IsSuccess is false)
             return new Result<string>(false, null,
-                new ArgumentException($"User with email {updateUserDto.Email} not found", nameof(updateUserDto)));
+                new ArgumentException($"User with id {updateUserDto.Email} not found", nameof(updateUserDto)));
 
         var user = getUserResponse.Data!;
         var updateUser = new UserEntity()
@@ -135,7 +135,7 @@ public class UserService : IUserService
         var getUserResponse = await GetUserByEmailAsync(id);
         if (getUserResponse.IsSuccess is false)
             return new Result<string>(false, null,
-                new ArgumentException($"User with email {id} not found", nameof(id)));
+                new ArgumentException($"User with id {id} not found", nameof(id)));
 
         var isUserDeleted = await _repository.DeleteUser(id);
         return isUserDeleted

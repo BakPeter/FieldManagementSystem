@@ -10,7 +10,7 @@ services:
       Logging__Seq__ServerUrl: http://seq
     networks:
       - fsm_shared_network
-    restart: unless-stopped
+    # restart: unless-stopped
   field-service:
     image: fieldmanagementsystem-services-field:latest
     container_name: fms-field-service
@@ -22,7 +22,7 @@ services:
       Logging__Seq__ServerUrl: http://seq
     networks:
       - fsm_shared_network
-    restart: unless-stopped
+    # restart: unless-stopped
   controller-service:
     image: fieldmanagementsystem-services-controller:latest
     container_name: fms-controller-service
@@ -34,7 +34,7 @@ services:
       Logging__Seq__ServerUrl: http://seq
     networks:
       - fsm_shared_network
-    restart: unless-stopped
+    # restart: unless-stopped
 
 networks:
   fsm_shared_network:

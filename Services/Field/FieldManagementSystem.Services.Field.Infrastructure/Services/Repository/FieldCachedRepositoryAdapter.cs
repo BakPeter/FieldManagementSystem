@@ -37,31 +37,23 @@ public class FieldCachedRepositoryAdapter : IFieldRepositoryAdapter
         _logger = logger;
     }
 
-    public Task<IEnumerable<FieldEntity>> GetAllFieldsAsync()
+    public Task<List<FieldEntity>> GetAllFieldsAsync(CancellationToken ct = default)
     {
-        return Task.FromResult(_data.Values.AsEnumerable());
+        return Task.FromResult(_data.Values.ToList());
     }
 
-    public Task<FieldEntity?> GetFieldAsync(string id)
+    public Task<FieldEntity?> GetFieldAsync(string id, CancellationToken ct = default)
     {
         _ = _data.TryGetValue(id, out var field);
         return Task.FromResult(field);
     }
 
-
-    public Task<FieldEntity?> GetFieldByNameAsync(string name)
-    {
-        var fieldData = _data.FirstOrDefault(fieldEntry => fieldEntry.Value.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-        // if (fieldData is null) return Task.FromResult<FieldEntity?>(null);
-        return Task.FromResult<FieldEntity?>(fieldData.Value);
-    }
-
-    public Task<bool> CreateFieldAsync(FieldEntity fieldToAdd)
+    public Task<bool> CreateFieldAsync(FieldEntity fieldToAdd, CancellationToken ct = default)
     {
         return Task.FromResult(_data.TryAdd(fieldToAdd.Id.ToString(), fieldToAdd));
     }
 
-    public Task<bool> UpdateField(FieldEntity fieldToUpdate)
+    public Task<bool> UpdateField(FieldEntity fieldToUpdate, CancellationToken ct = default)
     {
         try
         {
@@ -75,8 +67,14 @@ public class FieldCachedRepositoryAdapter : IFieldRepositoryAdapter
         }
     }
 
-    public Task<bool> DeleteField(string id)
+    public Task<bool> DeleteField(string id, CancellationToken ct = default)
     {
         return Task.FromResult(_data.TryRemove(id, out _));
+    }
+
+    public Task<FieldEntity?> GetFieldByNameAsync(string name, CancellationToken ct = default)
+    {
+        var field = _data.Values.FirstOrDefault(f => f.Name.Equals(name));
+        return Task.FromResult(field);
     }
 }

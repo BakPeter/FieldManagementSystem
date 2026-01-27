@@ -5,9 +5,9 @@ namespace FieldManagementSystem.Services.Field.Core.Interfaces;
 
 public interface IFieldService
 {
-    Task<Result<IEnumerable<FieldEntity>>> GetFieldsAsync();
-    Task<Result<FieldEntity>> GetFieldAsync(string id);
-    Task<Result<FieldEntity>> CreateFieldAsync(CreateFieldDto createFieldDto);
-    Task<Result<string>> UpdateField(UpdateFieldDto updateFieldDto);
-    Task<Result<string>> DeleteFieldAsync(string id);
+    Task<Result<IEnumerable<FieldEntity>>> GetFieldsAsync(CancellationToken ct = default);
+    Task<Result<FieldEntity>> GetFieldAsync(string id, CancellationToken ct = default);
+    Task<Result<FieldEntity>> CreateFieldAsync(CreateFieldDto createFieldDto, CancellationToken ct = default);
+    Task<Result<string>> UpdateField(UpdateFieldDto updateFieldDto, CancellationToken ct = default);
+    Task<Result<string>> DeleteFieldAsync(string id, CancellationToken ct = default);
 }

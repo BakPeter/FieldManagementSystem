@@ -175,7 +175,7 @@ public class UserServiceTests
         Assert.That(result.IsSuccess, Is.False);
         Assert.That(result.Data, Is.Null);
         Assert.That(result.Error, Is.InstanceOf<ArgumentException>());
-        Assert.That(result.Error.Message, Is.EqualTo($"User with email {createDto.Email} exists (Parameter 'createUserDto')"));
+        Assert.That(result.Error.Message, Is.EqualTo($"User with id {createDto.Email} exists (Parameter 'createUserDto')"));
         _mockRepository.Verify(r => r.CreateUserAsync(It.IsAny<UserEntity>(), CancellationToken.None), Times.Never);
     }
 
@@ -232,7 +232,7 @@ public class UserServiceTests
         // Assert
         Assert.That(result.IsSuccess, Is.False);
         Assert.That(result.Error, Is.InstanceOf<ArgumentException>());
-        Assert.That(result.Error.Message, Is.EqualTo($"User with email {updateDto.Email} not found (Parameter 'updateUserDto')"));
+        Assert.That(result.Error.Message, Is.EqualTo($"User with id {updateDto.Email} not found (Parameter 'updateUserDto')"));
         _mockRepository.Verify(r => r.UpdateUser(It.IsAny<UserEntity>(), CancellationToken.None), Times.Never);
     }
 
@@ -313,7 +313,7 @@ public class UserServiceTests
         // Assert
         Assert.That(result.IsSuccess, Is.False);
         Assert.That(result.Error, Is.InstanceOf<ArgumentException>());
-        Assert.That(result.Error.Message, Is.EqualTo($"User with email {userId} not found (Parameter 'id')"));
+        Assert.That(result.Error.Message, Is.EqualTo($"User with id {userId} not found (Parameter 'id')"));
         _mockRepository.Verify(r => r.DeleteUser(userId, CancellationToken.None), Times.Never);
     }
 

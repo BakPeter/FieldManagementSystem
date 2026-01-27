@@ -24,7 +24,7 @@ public class FieldController : ControllerBase
     {
         try
         {
-            var response = await _service.GetFieldsAsync();
+            var response = await _service.GetFieldsAsync(CancellationToken.None);
             if (response.IsSuccess) return Ok(response.Data);
 
             _logger.LogInformation("Get Fields, response: {response}", JsonSerializer.Serialize(response));
@@ -42,7 +42,7 @@ public class FieldController : ControllerBase
     {
         try
         {
-            var response = await _service.GetFieldAsync(id);
+            var response = await _service.GetFieldAsync(id, CancellationToken.None);
             if (response.IsSuccess) return Ok(response.Data);
 
             _logger.LogInformation("Get Field by id - {Success}: id: {id} response: {response}",
@@ -135,12 +135,15 @@ public class FieldController : ControllerBase
     private ActionResult ErrorHandler(Exception error)
     {
         _logger.LogError(error.Message);
+        var errorMsg = error.Message;
+        if (error.InnerException is not null)
+            errorMsg = $"{errorMsg}, Inner Error Msg: {error.InnerException.Message}";
 
         var problem = new ProblemDetails
         {
             Status = StatusCodes.Status500InternalServerError,
             Title = "Bad Request",
-            Detail = error.Message,
+            Detail = $"{errorMsg}",
         };
         return BadRequest(problem);
     }

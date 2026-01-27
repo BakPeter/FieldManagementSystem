@@ -1,5 +1,6 @@
 using System.Text.Json;
 using FieldManagementSystem.Services.User.Core.Interfaces;
+using FieldManagementSystem.Services.User.Core.Types;
 using FieldManagementSystem.Services.User.Core.Types.DTOs;
 using FieldManagementSystem.Services.User.Infrastructure.types;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,7 @@ public class UserController : ControllerBase
             var response = await _service.GetUsersAsync();
             if (response.IsSuccess) return Ok(response.Data);
 
-            _logger.LogInformation("111Get Users, response: {response}", JsonSerializer.Serialize(response));
+            _logger.LogInformation("Get Users, response: {response}", JsonSerializer.Serialize(response));
 
             return BadRequest(response.Error!.Message);
         }
@@ -38,21 +39,29 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Get User by User email.
-    /// User email is User is email registration.
+    /// Get User by user property.
     /// </summary>
-    /// <param name="email">User registration email</param>
+    /// <param name="tokenType">User property type, 'email' or 'id' </param>
+    /// <param name="tokenValue">User property value</param>
     /// <returns></returns>
-    [HttpGet("{email}")]
-    public async Task<IActionResult> GetUser(string email)
+    [HttpGet("{tokenType}/{tokenValue}")]
+    public async Task<IActionResult> GetUser(string tokenType, string tokenValue)
     {
         try
         {
-            var response = await _service.GetUserByEmailAsync(email);
+            Result<UserEntity> response;
+            if (tokenType.Equals("email"))
+                response = await _service.GetUserByEmailAsync(tokenValue);
+            else if (tokenType.Equals("id"))
+                response = await _service.GetUserAsync(tokenValue);
+            else
+                throw new ArgumentException($"I valid user token type, {tokenType}, can be email/id only", nameof(tokenType));
+
             if (response.IsSuccess) return Ok(response.Data);
 
-            _logger.LogInformation("Get User by email - {Success}: email: {email} response: {response}",
-                response.IsSuccess, email, JsonSerializer.Serialize(response));
+            _logger.LogInformation(
+                "Get User token type - {Success}: tokenType: {tokenType}, tokenValue: {tokenValue}, response: {response}",
+                response.IsSuccess, tokenType, tokenValue, JsonSerializer.Serialize(response));
 
             return BadRequest(response.Error!.Message);
         }
@@ -121,9 +130,9 @@ public class UserController : ControllerBase
 
     /// <summary>
     /// DeleteUserAsync by User id.
-    /// User id is User is email registration.
+    /// User id is User is id registration.
     /// </summary>
-    /// <param name="id">User registration email</param>
+    /// <param name="id">User registration id</param>
     /// <returns></returns>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteUser(string id)
